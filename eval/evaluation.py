@@ -3,12 +3,13 @@ import pandas as pd
 import json
 
 def evaluation_mteb(model_list:list[str], output_dir:str, batch_size:int=32, task_list:list[str]=None):
-
-    tasks = [(mteb.get_task(task, ['kor'])) for task in task_list]
-    # tasks = mteb.get_tasks(
-    #     languages=['kor'], 
-    #     task_types=["Retrieval"]
-    # )
+    preset = True
+    
+    if preset:
+        tasks = mteb.get_benchmark("MTEB(kor, v1)")
+    else:
+        tasks = [(mteb.get_task(task, ['kor'])) for task in task_list]
+        
     evaluation = mteb.MTEB(tasks=tasks)
     
     for n, model_name in enumerate(model_list):
@@ -17,7 +18,8 @@ def evaluation_mteb(model_list:list[str], output_dir:str, batch_size:int=32, tas
         
         try:
             model = mteb.get_model(model_name)
-            evaluation.run(model, verbosity=3, output_folder=output_dir, encode_kwargs={"batch_size": batch_size})
+            # evaluation.run(model, verbosity=3, output_folder=output_dir, encode_kwargs={"batch_size": batch_size})
+            evaluation.run(model, verbosity=3, output_folder=output_dir)
         except Exception as e:
             print(f'Error Occur: {model_name}')
             print(f'Error Occur: {e}')
