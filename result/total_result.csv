@@ -1,0 +1,9 @@
+,KorSTS
+x2bee/KoModernBERT-base-mlm-ecs_V01,0.220534
+BM-K/KoSimCSE-roberta-multitask,0.852919
+dragonkue/BGE-m3-ko,0.815861
+nlpai-lab/KURE-v1,0.812451
+nlpai-lab/KoE5,0.794577
+jinaai/jina-embeddings-v3,0.843144
+klue/roberta-base,0.518671
+klue/bert-base,0.481194
